@@ -1,0 +1,131 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ArquivoService {
+  getProductsData() {
+    return [
+      {
+        nome: 'Sheryl',
+        sobrenome: 'Baxter',
+        cidade: 'East Leonard',
+        pais: 'Chile',
+        telefone: '229.077.5154',
+        email: 'zunigavanessa@smith.info',
+      },
+      {
+        nome: 'Preston',
+        sobrenome: 'Lozano',
+        cidade: 'East Jimmychester',
+        pais: 'Djibouti',
+        telefone: '5153435776',
+        email: 'vmata@colon.com',
+      },
+      {
+        nome: 'Roy',
+        sobrenome: 'Berry',
+        cidade: 'Isabelborough',
+        pais: 'Antigua and Barbuda',
+        telefone: '+1-539-402-0259',
+        email: 'beckycarr@hogan.com',
+      },
+      {
+        nome: 'Linda',
+        sobrenome: 'Olsen',
+        cidade: 'Bensonview',
+        pais: 'Dominican Republic',
+        telefone: '001-808-617-6467x12895',
+        email: 'stanleyblackwell@benson.org',
+      },
+      {
+        nome: 'Joanna',
+        sobrenome: 'Bender',
+        cidade: 'West Priscilla',
+        pais: 'Slovakia (Slovak Republic)',
+        telefone: '001-234-203-0635x76146',
+        email: 'colinalvarado@miles.net',
+      },
+      {
+        nome: 'Aimee',
+        sobrenome: 'Downs',
+        cidade: 'Chavezborough',
+        pais: 'Bosnia and Herzegovina',
+        telefone: '(283)437-3886x88321',
+        email: 'louis27@gilbert.com',
+      },
+      {
+        nome: 'Darren',
+        sobrenome: 'Peck',
+        cidade: 'Lake Ana',
+        pais: 'Pitcairn Islands',
+        telefone: '(496)452-6181x3291',
+        email: 'tgates@cantrell.com',
+      },
+      {
+        nome: 'Brett',
+        sobrenome: 'Mullen',
+        cidade: 'Kimport',
+        pais: 'Bulgaria',
+        telefone: '001-583-352-7197x297',
+        email: 'asnow@colon.com',
+      },
+      {
+        nome: 'Sheryl',
+        sobrenome: 'Meyers',
+        cidade: 'Robersonstad',
+        pais: 'Cyprus',
+        telefone: '854-138-4911x5772',
+        email: 'mariokhan@ryan-pope.org',
+      },
+      {
+        nome: 'Michelle',
+        sobrenome: 'Gallagher',
+        cidade: 'Elaineberg',
+        pais: 'Timor-Leste',
+        telefone: '739.218.2516x459',
+        email: 'mdyer@escobar.net',
+      },
+      {
+        nome: 'Carl',
+        sobrenome: 'Schroeder',
+        cidade: 'Shannonville',
+        pais: 'Guernsey',
+        telefone: '637-854-0256x825',
+        email: 'kirksalas@webb.com',
+      },
+      {
+        nome: 'Jenna',
+        sobrenome: 'Dodson',
+        cidade: 'East Andrea',
+        pais: 'Vietnam',
+        telefone: '(041)737-3846',
+        email: 'mark42@robbins.com',
+      },
+      {
+        nome: 'Tracey',
+        sobrenome: 'Mata',
+        cidade: 'South Joannamouth',
+        pais: 'Togo',
+        telefone: '001-949-844-8787',
+        email: 'alex56@walls.org',
+      },
+      {
+        nome: 'Kristine',
+        sobrenome: 'Cox',
+        cidade: 'Jodyberg',
+        pais: 'Sri Lanka',
+        telefone: '786-284-3358x62152',
+        email: 'holdenmiranda@clarke.com',
+      },
+      {
+        nome: 'Faith',
+        sobrenome: 'Lutz',
+        cidade: 'Burchbury',
+        pais: 'Singapore',
+        telefone: '(781)861-7180x8306',
+        email: 'cassieparrish@blevins-chapman.net',
+      },
+    ];
+  }
+}

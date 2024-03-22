@@ -1,0 +1,43 @@
+<!-- <app-photo-card *ngFor="let photo of albumPhotos" [photo]="photo"></app-photo-card> -->
+
+<p-table [value]="albums" 
+dataKey="id"
+[rows]="10"
+[showCurrentPageReport]="true"
+[rowsPerPageOptions]="[10, 25, 50]"
+[paginator]="true"
+currentPageReportTemplate="Exibindo {first} - {last} de {totalRecords} dados"
+[globalFilterFields]="['title']"
+sortMode="multiple"
+#data
+  >
+  <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between w-full">
+        <p>Imagens</p>
+      </div>
+      <div class="flex gap-2">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input #inputField pInputText type="text" (input)="filterData($event)" placeholder="Buscar por palavra chave" />
+        </span>
+      <button pButton label="Limpar" class="p-button-outlined"  (click)="clear(data)" icon="pi pi-filter-slash" ></button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+        <th class="text-left" pSortableColumn="title" style="width:20%">Título <p-sortIcon field="title"></p-sortIcon></th>
+        <th class="text-left" pSortableColumn="thumbnailUrl" style="width:20%">Imagem <p-sortIcon field="thumbnailUrl"></p-sortIcon></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-row>
+        <tr> 
+          <th class="text-left">{{ row.title }}</th>
+          <th class="text-center"><img [src]="row.thumbnailUrl" alt="Thumbnail" ></th>
+        </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Total de
+      </div>
+  </ng-template>
+</p-table>
