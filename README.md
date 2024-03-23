@@ -2,7 +2,7 @@
 
 # Pesquisador de Album de Fotos
 
-Um aplicativo para exibir e buscar fotos.
+Um aplicativo para exibit e buscar fotos.
 
 🚧 trabalho em progresso 🚧.
 

@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { PhotoAlbum } from '../domain';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs'
+import { PhotoAlbum } from '../domain'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PhotoService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/photos';
+  private apiUrl = 'https://jsonplaceholder.typicode.com/photos'
 
   constructor(private http: HttpClient) {}
 
   getPhotos(): Observable<PhotoAlbum[]> {
-    return this.http.get<PhotoAlbum[]>(this.apiUrl);
+    return this.http.get<PhotoAlbum[]>(this.apiUrl)
   }
 }

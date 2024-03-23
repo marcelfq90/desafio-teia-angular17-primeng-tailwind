@@ -1,0 +1,16 @@
+@defer (on viewport; prefetch on timer(100)) {
+  <div class="bg-gradient-to-b from-azul-caixa-1 to-azul-caixa-2">
+    <app-header />
+    <div class="p-[2px] md:p-10">
+      <div class="rounded-lg p-1 bg-white">
+        <app-photo-album />
+      </div>
+      <p-scrollTop></p-scrollTop>
+    </div>
+    <p-scrollTop></p-scrollTop>
+  </div>
+} @placeholder {
+  <app-loading [progressValue]="0" />
+} @loading {
+  <app-loading [progressValue]="progressValue" />
+}
