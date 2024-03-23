@@ -6,7 +6,8 @@
     "start": "ng serve --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "format": "prettier . --write"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,7 @@
     "zone.js": "~0.14.4"
   },
   "devDependencies": {
+    "prettier": "^3.0.3",
     "@angular-devkit/build-angular": "^17.3.0",
     "@angular/cli": "~17.3.0",
     "@angular/compiler-cli": "^17.3.0",

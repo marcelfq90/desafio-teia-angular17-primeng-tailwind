@@ -1,43 +1,124 @@
-<!-- <app-photo-card *ngFor="let photo of albumPhotos" [photo]="photo"></app-photo-card> -->
-
-<p-table [value]="albums" 
-dataKey="id"
-[rows]="10"
-[showCurrentPageReport]="true"
-[rowsPerPageOptions]="[10, 25, 50]"
-[paginator]="true"
-currentPageReportTemplate="Exibindo {first} - {last} de {totalRecords} dados"
-[globalFilterFields]="['title']"
-sortMode="multiple"
-#data
-  >
+<p-table
+  [value]="albums"
+  dataKey="id"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [paginator]="true"
+  currentPageReportTemplate="Exibindo {first} - {last} de {totalRecords} dados"
+  [globalFilterFields]="['title']"
+  sortMode="multiple"
+  [loading]="loading"
+  #data
+>
   <ng-template pTemplate="caption">
-      <div class="flex align-items-center justify-content-between w-full">
-        <p>Imagens</p>
-      </div>
-      <div class="flex gap-2">
-        <span class="p-input-icon-left ml-auto">
-          <i class="pi pi-search"></i>
-          <input #inputField pInputText type="text" (input)="filterData($event)" placeholder="Buscar por palavra chave" />
-        </span>
-      <button pButton label="Limpar" class="p-button-outlined"  (click)="clear(data)" icon="pi pi-filter-slash" ></button>
+    <div class="flex gap-2 flex-col md:flex-row place-content-end">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          #inputField
+          pInputText
+          type="text"
+          (input)="filterData($event)"
+          placeholder="Buscar título"
+          class="w-full md:w-[200px]"
+        />
+      </span>
+      <p-autoComplete
+        class="w-full [&>div]:w-full [&>div>ul]:w-full md:w-[300px]"
+        [(ngModel)]="selectedItems"
+        placeholder="Filtrar por grupo(s)"
+        [suggestions]="suggestions"
+        (completeMethod)="search($event)"
+        [multiple]="true"
+        (ngModelChange)="onAlbumIdSelect()"
+      />
+      <button
+        pButton
+        class="p-button-outlined"
+        (click)="clear(data)"
+        icon="pi pi-filter-slash"
+      >
+        Limpar
+      </button>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
-      <tr>
-        <th class="text-left" pSortableColumn="title" style="width:20%">Título <p-sortIcon field="title"></p-sortIcon></th>
-        <th class="text-left" pSortableColumn="thumbnailUrl" style="width:20%">Imagem <p-sortIcon field="thumbnailUrl"></p-sortIcon></th>
-      </tr>
+    <tr>
+      <th class="text-left w-[75%]" pSortableColumn="title">
+        Título <p-sortIcon field="title"></p-sortIcon>
+      </th>
+    </tr>
   </ng-template>
   <ng-template pTemplate="body" let-row>
-        <tr> 
-          <th class="text-left">{{ row.title }}</th>
-          <th class="text-center"><img [src]="row.thumbnailUrl" alt="Thumbnail" ></th>
-        </tr>
-  </ng-template>
-  <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">
-        Total de
-      </div>
+    <tr>
+      <td class="flex flex-row gap-4">
+        @defer (on immediate; on timer(2s)) {
+          <img
+            [src]="row.thumbnailUrl"
+            alt="Thumbnail"
+            class="w-[150px] h-[150px] cursor-pointer rounded-md"
+            (click)="showDialog(row)"
+          />
+        } @loading (minimum 2s) {
+          <div class="min-w-[150px] h-[150px] flex items-center justify-center">
+            <p-progressSpinner
+              styleClass="w-4rem h-4rem"
+              strokeWidth="2"
+              fill="var(--surface-ground)"
+            ></p-progressSpinner>
+          </div>
+        }
+        <div
+          class="flex flex-col place-content-between h-[150px] p-2 md:px-10 w-full"
+        >
+          <div>{{ row.title }}</div>
+          <div>
+            <div class="border-b-[2px] border-gray-300 my-2"></div>
+            <p-tag [style]="getGroup(row)"
+              ><i class="pi pi-tags pr-2" style="color: white"></i>GRUPO:
+              {{ row.albumId }}</p-tag
+            >
+          </div>
+        </div>
+      </td>
+    </tr>
   </ng-template>
 </p-table>
+
+<p-dialog
+  [header]="currentImageObject.title"
+  [(visible)]="visible"
+  [modal]="true"
+  class="min-w-[200px] w-[700px]"
+>
+  <div>
+    @defer (on viewport; on timer(3s)) {
+      <img
+        class="min-w-[200px] w-[700px] h-full"
+        [src]="currentImageObject.url"
+        alt="image"
+        class="block"
+      />
+    } @loading {
+      <div
+        class="min-w-[200px] w-[700px] h-full flex items-center justify-center"
+      >
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          strokeWidth="2"
+          fill="var(--surface-ground)"
+        ></p-progressSpinner>
+      </div>
+    } @placeholder {
+      <div
+        class="min-w-[200px] w-[700px] h-full flex items-center justify-center"
+      >
+        <p-progressSpinner
+          styleClass="w-4rem h-4rem"
+          strokeWidth="2"
+          fill="var(--surface-ground)"
+        ></p-progressSpinner>
+      </div>
+    }
+  </div>
+</p-dialog>

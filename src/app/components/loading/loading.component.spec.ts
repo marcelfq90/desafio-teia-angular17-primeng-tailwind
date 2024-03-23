@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { PhotoAlbumComponent } from './photo-album.component'
+import { LoadingComponent } from './loading.component'
 
-describe('PhotoAlbumComponent', () => {
-  let component: PhotoAlbumComponent
-  let fixture: ComponentFixture<PhotoAlbumComponent>
+describe('LoadingComponent', () => {
+  let component: LoadingComponent
+  let fixture: ComponentFixture<LoadingComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PhotoAlbumComponent]
+      imports: [LoadingComponent]
     }).compileComponents()
 
-    fixture = TestBed.createComponent(PhotoAlbumComponent)
+    fixture = TestBed.createComponent(LoadingComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
